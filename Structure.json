@@ -1,0 +1,24 @@
+{
+  "recipes": {
+    "macaroni cheese": {
+      "number of portions": 2,
+      "ingredients": [
+        { "name": "cheese", "amount": "30g" },
+        { "name": "macaroni", "amount": "250g" }
+      ]
+    }
+  },
+  "currentList": {
+    "dairy": [{ "name": "cheese", "amount": "30g" }],
+    "dried goods": [{ "name": "macaroni", "amount": "250g" }],
+    "household": [{ "name": "washing up liquid" }]
+  },
+  "ingredients": {
+    "cheese": {
+      "category": "dairy"
+    },
+    "macaroni": {
+      "category": "dried goods"
+    }
+  }
+}

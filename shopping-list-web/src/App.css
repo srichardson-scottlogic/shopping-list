@@ -1,0 +1,29 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+#list-container {
+  width: 400px;
+  margin: auto;
+  padding: 2em;
+}
+#list-container ul {
+  padding: 0;
+  list-style: none;
+}
+#list-container ul li {
+  padding: 5px;
+  font-size: 24px;
+  background-color: #61dafb;
+  color: black;
+  margin-bottom: 2px;
+  overflow: auto;
+  height: fit-content;
+}
+#list-container input {
+  width: 100%;
+  height: 35px;
+}
