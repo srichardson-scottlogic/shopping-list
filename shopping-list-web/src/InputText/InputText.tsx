@@ -2,20 +2,29 @@ import { useState } from "react";
 
 export default function InputText(props) {
   //TODO: What type should this props be?
-  const [value, setValue] = useState("");
+  const [product, setProduct] = useState("");
+  const [amount, setAmount] = useState("");
   return (
     <form
       onSubmit={(e) => {
+        console.log(e);
         e.preventDefault();
-        props.handleSubmit(value);
-        setValue("");
+        props.handleSubmit(product, amount);
+        setProduct("");
+        setAmount("");
       }}
     >
       <input
         type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        value={product}
+        onChange={(e) => setProduct(e.target.value)}
       />
+      <input
+        type="text"
+        value={amount}
+        onChange={(e) => setAmount(e.target.value)}
+      />
+      <button type="submit">Add item</button>
     </form>
   );
 }

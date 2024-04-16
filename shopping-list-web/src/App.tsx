@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./App.css";
 
 import IListItem from "./ListItem/IListItem";
-import ListDisplay from "./ListDisplay/ListDisplay";
+import CollapsibleCategory from "./CollapsibleCategory/CollapsibleCategory";
 import InputText from "./InputText/InputText";
 
 function App() {
@@ -14,10 +14,10 @@ function App() {
     <>
       <h1>Shopping List</h1>
       <div id="list-container">
-        <ListDisplay items={items} />
+        <CollapsibleCategory category="dairy" items={items} />
         <InputText
-          handleSubmit={(item: string) => {
-            setItems([...items, { product: item, amount: "30g" }]);
+          handleSubmit={(product: string, amount: string) => {
+            setItems([...items, { product: product, amount: amount }]);
           }}
         />
       </div>
