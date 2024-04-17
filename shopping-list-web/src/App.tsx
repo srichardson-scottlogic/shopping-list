@@ -1,23 +1,34 @@
 import { useState } from "react";
 import "./App.css";
 
-import IListItem from "./ListItem/IListItem";
-import CollapsibleCategory from "./CollapsibleCategory/CollapsibleCategory";
 import InputText from "./InputText/InputText";
+import List from "./List/List";
+import IListItem from "./ListItem/IListItem";
 
 function App() {
-  const [items, setItems] = useState<IListItem[]>([
-    { product: "cheese", amount: "30g" },
-  ]);
+  const initialItems = new Map<string, IListItem[]>();
+  initialItems.set("dairy", [{ product: "cheese", amount: "30g" }]);
+  initialItems.set("dried goods", [{ product: "pasta", amount: "300g" }]);
+
+  const [items, setItems] = useState<Map<string, IListItem[]>>(initialItems);
 
   return (
     <>
       <h1>Shopping List</h1>
       <div id="list-container">
-        <CollapsibleCategory category="dairy" items={items} />
+        <List list={items} />
         <InputText
-          handleSubmit={(product: string, amount: string) => {
-            setItems([...items, { product: product, amount: amount }]);
+          handleSubmit={(product: string, amount: string, category: string) => {
+            const newItems = new Map(items);
+            if (items.has(category)) {
+              newItems.set(category, [
+                ...items.get(category)!,
+                { product: product, amount: amount },
+              ]);
+            } else {
+              newItems.set(category, [{ product: product, amount: amount }]);
+            }
+            setItems(newItems);
           }}
         />
       </div>
