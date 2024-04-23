@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "safetest": "cross-env OPT_URL=${TARGET_URL:-http://localhost:3000} react-scripts --inspect test --runInBand --testMatch '**/*.safetest.{j,t}s{,x}' --setupFilesAfterEnv ./setup-safetest.tsx",
+    "safetest:ci": "rm -f artifacts.json && OPT_URL=${DEPLOYED_URL} OPT_CI=1 OPT_DOCKER=1 npm run safetest -- --watchAll=false --ci=1 --json --outputFile=results.json",
+    "safetest:regenerate-screenshots": "cross-env OPT_DOCKER=1 npm run safetest -- --watchAll=false --update-snapshot"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -22,6 +25,7 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
+    "safetest": "^0.1.13",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }
