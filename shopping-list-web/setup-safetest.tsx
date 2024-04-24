@@ -1,5 +1,5 @@
-import { setup } from "safetest/setup";
+import { setup } from 'safetest/setup';
 
 setup({
-  bootstrappedAt: require.resolve("./src/main.tsx"),
+  bootstrappedAt: require.resolve('./src/main.tsx')
 });
