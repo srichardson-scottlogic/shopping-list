@@ -169,6 +169,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+__image_snapshots__
 dist
 dist-ssr
 *.local

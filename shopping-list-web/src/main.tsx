@@ -1,10 +1,18 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.tsx";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+import { bootstrap } from "safetest/react";
+import "./index.css";
+
+const root = ReactDOM.createRoot(document.getElementById("root")!);
+
+bootstrap({
+  element: (
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  ),
+  importGlob: import.meta.glob("./**/*.safetest.{j,t}s{,x}"),
+  render: (element) => root.render(element),
+});
