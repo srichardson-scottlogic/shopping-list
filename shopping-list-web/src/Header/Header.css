@@ -1,0 +1,8 @@
+header {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-bottom-style: groove;
+  background-color: white;
+}

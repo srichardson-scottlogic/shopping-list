@@ -38,10 +38,10 @@ npm install
 
 ## Running the backend
 
-From inside the `api` folder
+From inside the `api` folder, in gitbash
 
 ```
-python -m flask run --debug
+source .venv/Scripts/activate && flask run --debug
 ```
 
 ## Running the frontend

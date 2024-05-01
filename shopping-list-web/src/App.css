@@ -1,17 +1,5 @@
 #root {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}
-
-#list-container {
-  width: 400px;
-  margin: auto;
-  padding: 2em;
-}
-
-#list-container ul {
-  padding: 0;
-  list-style: none;
 }
