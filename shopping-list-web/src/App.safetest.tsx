@@ -8,7 +8,7 @@ import IListItem from "./ListItem/IListItem";
 describe("App", () => {
   it("renders without crashing", async () => {
     const { page } = await render();
-    await expect(page.locator("text=Shopping List")).toBeVisible();
+    await expect(page.locator("h1")).toHaveText("Shopping List");
   });
 });
 
