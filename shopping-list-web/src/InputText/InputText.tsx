@@ -14,10 +14,12 @@ export default function InputText(props: {
     >
       <input
         type="text"
+        aria-label="productInput"
         onChange={(e) => props.setCurrentProduct(e.target.value)}
       />
       <input
         type="text"
+        aria-label="amountInput"
         onChange={(e) => props.setCurrentAmount(e.target.value)}
       />
       <button type="submit">Add item</button>

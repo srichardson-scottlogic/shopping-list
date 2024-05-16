@@ -1,5 +1,7 @@
-import ListDisplay from "../ListDisplay/ListDisplay";
-import IListItem from "../ListItem/IListItem";
+import ListDisplay from "../../ListDisplay/ListDisplay";
+import IListItem from "../../ListItem/IListItem";
+
+import "../CollapsibleComponent.css";
 
 import { useState, useRef } from "react";
 

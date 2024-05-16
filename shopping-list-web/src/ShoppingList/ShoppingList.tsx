@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./ShoppingList.css";
 
 import InputText from "../InputText/InputText";
-import List from "../List/List";
+import List from "../ListComponents/List/List";
 import IListItem from "../ListItem/IListItem";
 import InputCategory from "../InputCategory/InputCategory";
 

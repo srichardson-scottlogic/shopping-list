@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import CollapsibleCategory from "./CollapsibleCategory";
 
 const mockProps = {
@@ -8,12 +8,18 @@ const mockProps = {
 
 describe("CollapsibleCategory", () => {
   it("renders headings", () => {
+    expect(screen.getByText("dairy")).toBeInTheDocument();
+  });
+  it("has a heading which can be clicked", () => {
+    fireEvent.click(screen.getByText("dairy"));
+  });
+
+  beforeEach(() => {
     render(
       <CollapsibleCategory
         category={mockProps.category}
         items={mockProps.items}
       />
     );
-    expect(screen.getByText("dairy")).toBeInTheDocument();
   });
 });
