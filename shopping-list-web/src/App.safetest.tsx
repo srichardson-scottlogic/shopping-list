@@ -1,7 +1,7 @@
 import { describe, it, expect } from "safetest/jest";
 import { render } from "safetest/react";
 
-import List from "./List/List";
+import List from "./ListComponents/List/List";
 import IListItem from "./ListItem/IListItem";
 
 // Whole App testing

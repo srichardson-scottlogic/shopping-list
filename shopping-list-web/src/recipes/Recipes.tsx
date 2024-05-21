@@ -1,6 +1,6 @@
 import { useState } from "react";
 import IRecipe from "./IRecipe";
-import RecipeList from "../RecipeList/RecipeList";
+import RecipeList from "../ListComponents/RecipeList/RecipeList";
 
 export default function Recipes() {
   const initialRecipes = new Map<string, IRecipe>();
