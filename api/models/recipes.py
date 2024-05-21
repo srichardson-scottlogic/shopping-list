@@ -4,10 +4,10 @@ from api.models.recipe import Recipe
 class Recipes:
     data = {
         "macaroni cheese": {
-            "number_of_portions": 2,
+            "numberOfPortions": 2,
             "ingredients": [
-                {"name": "cheese", "amount": "30g"},
-                {"name": "macaroni", "amount": "250g"}
+                {"product": "cheese", "amount": "30g"},
+                {"product": "macaroni", "amount": "250g"}
             ]
         }
     }
@@ -17,7 +17,7 @@ class Recipes:
             return  # TODO: Return error/ update
         # TODO: Make this more generic
         self.data[recipe.name.lower()] = {
-            "number of portions": recipe.number_of_portions,
+            "numberOfPortions": recipe.numberOfPortions,
             "ingredients": recipe.ingredients
         }
 

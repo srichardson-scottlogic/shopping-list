@@ -1,9 +1,10 @@
 from api.models.ingredient import Ingredient
 
+
 class Recipe:
-    def __init__(self, name, number_of_portions, ingredients):
+    def __init__(self, name, numberOfPortions, ingredients):
         self.name = name
-        self.number_of_portions = number_of_portions
+        self.numberOfPortions = numberOfPortions
         self.ingredients = ingredients
 
     # def add_ingredient_to_recipe(self, ingredient: Ingredient):

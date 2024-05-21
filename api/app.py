@@ -44,7 +44,7 @@ def add_ingredient():
 
 @app.get("/recipes")
 def get_all_recipes():
-    return jsonify(recipes.data)
+    return _corsify_and_jsonify_response(recipes.data)
 
 
 @app.get("/recipes/<name>")
