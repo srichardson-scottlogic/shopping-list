@@ -3,11 +3,14 @@ from api.models.product import Product
 from api.models.products import Products
 from api.models.recipe import Recipe
 from api.models.recipes import Recipes
+from api.models.shoppingList import ShoppingList
+from api.models.shoppingListItem import ShoppingListItem
 
 
 app = Flask(__name__)
 
 products = Products()
+shoppingList = ShoppingList()
 recipes = Recipes()
 
 
@@ -65,6 +68,23 @@ def add_recipe():
         except TypeError:
             return _corsify_and_jsonify_response({"error": "Request must be a JSON recipe"}), 415
     return _corsify_and_jsonify_response({"error": "Request must be a JSON recipe"}), 415
+
+
+@app.get("/shoppingList")
+def get_shopping_list():
+    return _corsify_and_jsonify_response(shoppingList.data)
+
+
+@app.post("/shoppingList")
+def add_item_to_list():
+    if request.is_json:
+        try:  # TODO: Use marshmellow here
+            item = ShoppingListItem(**request.get_json())
+            shoppingList.add_product_to_list(item)
+            return _corsify_and_jsonify_response(shoppingList.data), 201
+        except TypeError:
+            return _corsify_and_jsonify_response({"error": "Request must be a JSON shopping list item"}), 415
+    return _corsify_and_jsonify_response({"error": "Request must be a JSON shopping list item"}), 415
 
 
 def _build_cors_preflight_response():
