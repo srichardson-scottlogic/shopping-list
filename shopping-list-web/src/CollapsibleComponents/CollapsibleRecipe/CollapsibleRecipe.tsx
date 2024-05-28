@@ -10,7 +10,7 @@ export default function CollapsibleRecipe(props: {
   numberOfPortions: number;
   items: IListItem[];
 }) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const contentRef = useRef<HTMLDivElement>();
   const childHeight = contentRef.current ? contentRef.current.scrollHeight : 0;
 

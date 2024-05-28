@@ -61,10 +61,10 @@ def add_recipe():
         try:  # TODO: Use marshmellow here
             recipe = Recipe(**request.get_json())
             recipes.add_recipe(recipe)
-            return jsonify(recipe.__dict__), 201
+            return _corsify_and_jsonify_response(recipes.data), 201
         except TypeError:
-            return {"error": "Request must be a JSON recipe"}, 415
-    return {"error": "Request must be a JSON recipe"}, 415
+            return _corsify_and_jsonify_response({"error": "Request must be a JSON recipe"}), 415
+    return _corsify_and_jsonify_response({"error": "Request must be a JSON recipe"}), 415
 
 
 def _build_cors_preflight_response():
