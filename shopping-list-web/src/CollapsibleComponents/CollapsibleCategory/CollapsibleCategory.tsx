@@ -9,7 +9,7 @@ export default function CollapsibleCategory(props: {
   items: IListItem[];
 }) {
   const [open, setOpen] = useState(true);
-  const contentRef = useRef<HTMLDivElement>();
+  const contentRef = useRef<HTMLDivElement>(null);
   const childHeight = contentRef.current ? contentRef.current.scrollHeight : 0;
 
   return (
@@ -19,7 +19,7 @@ export default function CollapsibleCategory(props: {
       </button>
       <div
         className="collapse-parent"
-        ref={contentRef} //TODO: Why is ref underlined? What is ref DOING
+        ref={contentRef}
         style={open ? { height: childHeight + "px" } : { height: "0px" }}
       >
         <ListDisplay items={props.items} />

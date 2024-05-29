@@ -1,3 +1,4 @@
+from typing import List
 from flask import Flask, request, jsonify, make_response
 from api.models.product import Product
 from api.models.products import Products
@@ -76,15 +77,17 @@ def get_shopping_list():
 
 
 @app.post("/shoppingList")
-def add_item_to_list():
+def add_items_to_list():
     if request.is_json:
         try:  # TODO: Use marshmellow here
-            item = ShoppingListItem(**request.get_json())
-            shoppingList.add_product_to_list(item)
+            items = []
+            for item in request.get_json():
+                items.append(ShoppingListItem(**item))
+            shoppingList.add_products_to_list(items)
             return _corsify_and_jsonify_response(shoppingList.data), 201
         except TypeError:
-            return _corsify_and_jsonify_response({"error": "Request must be a JSON shopping list item"}), 415
-    return _corsify_and_jsonify_response({"error": "Request must be a JSON shopping list item"}), 415
+            return _corsify_and_jsonify_response({"error": "Request must be a JSON shopping list"}), 415
+    return _corsify_and_jsonify_response({"error": "Request must be a JSON shopping list"}), 415
 
 
 def _build_cors_preflight_response():

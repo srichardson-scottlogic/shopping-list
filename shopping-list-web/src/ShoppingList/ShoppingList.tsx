@@ -5,6 +5,14 @@ import InputText from "../InputText/InputText";
 import List from "../ListComponents/List/List";
 import IListItem from "../ListItem/IListItem";
 import InputCategory from "../InputCategory/InputCategory";
+import {
+  getListData,
+  addItemDataToList,
+} from "../utilities/httpMethods/shoppingListMethods";
+import {
+  addCategoryDataForProduct,
+  getCategoryDataResponseForProduct,
+} from "../utilities/httpMethods/productMethods";
 
 export default function ShoppingList() {
   const [items, setItems] = useState<Map<string, IListItem[]>>(
@@ -14,26 +22,37 @@ export default function ShoppingList() {
   const [currentAmount, setCurrentAmount] = useState<string>("");
   const [categoryFound, setCategoryFound] = useState(true);
 
-  const getListData = async () => {
-    const response = await fetch("http://127.0.0.1:5000/shoppingList");
-    const result = await response.json();
-
-    const objectToMap = (obj: Map<string, IListItem[]>) => {
-      return new Map<string, IListItem[]>(Object.entries(obj));
-    };
-    setItems(objectToMap(result));
+  const getAndDisplayListData = async () => {
+    const result = await getListData();
+    setItems(result);
   };
 
   useEffect(() => {
-    getListData().catch((error) => {
+    getAndDisplayListData().catch((error) => {
       console.error("Error: ", error);
     });
   }, []);
 
+  const handleItemSubmit = async () => {
+    const category = await getCategoryDataForProduct(currentProduct);
+    if (category) {
+      await postNewItemAndDisplayNewList(
+        category,
+        currentProduct,
+        currentAmount
+      ); //TODO: get rid of the product and amount after this
+    }
+  };
+
+  const handleCategorySubmit = async (category: string) => {
+    await addCategoryDataForProduct(currentProduct, category);
+    setCategoryFound(true);
+    await postNewItemAndDisplayNewList(category, currentProduct, currentAmount);
+  };
+
   const getCategoryDataForProduct = async (product: string) => {
     try {
-      const response = await fetch("http://127.0.0.1:5000/products/" + product);
-      const result = await response.json();
+      const result = await getCategoryDataResponseForProduct(product);
       if (result.error === "Product not found") {
         setCategoryFound(false);
         return;
@@ -45,45 +64,13 @@ export default function ShoppingList() {
     }
   };
 
-  const postCategoryDataForProduct = (product: string, category: string) => {
-    const data = {
-      name: product,
-      category: category,
-    };
-    fetch("http://127.0.0.1:5000/products", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-  };
-
-  const postNewItem = async (
+  const postNewItemAndDisplayNewList = async (
     category: string,
     product: string,
     amount: string
   ) => {
-    const data = {
-      category: category,
-      item: {
-        product: product,
-        amount: amount,
-      },
-    };
-    const response = await fetch("http://127.0.0.1:5000/shoppingList", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    const result = await response.json();
-
-    const objectToMap = (obj: Map<string, IListItem[]>) => {
-      return new Map<string, IListItem[]>(Object.entries(obj));
-    };
-    setItems(objectToMap(result));
+    const result = await addItemDataToList(category, product, amount);
+    setItems(result);
   };
 
   return (
@@ -95,22 +82,13 @@ export default function ShoppingList() {
           <InputText
             setCurrentProduct={setCurrentProduct}
             setCurrentAmount={setCurrentAmount}
-            handleSubmit={async () => {
-              const category = await getCategoryDataForProduct(currentProduct);
-              if (category) {
-                postNewItem(category, currentProduct, currentAmount); //TODO: get rid of the product and amount after this
-              }
-            }}
+            handleSubmit={handleItemSubmit}
           />
         )}
         {!categoryFound && (
           <InputCategory
             product={currentProduct}
-            handleSubmit={(category: string) => {
-              setCategoryFound(true);
-              postCategoryDataForProduct(currentProduct, category);
-              postNewItem(category, currentProduct, currentAmount);
-            }}
+            handleSubmit={handleCategorySubmit}
           />
         )}
       </div>

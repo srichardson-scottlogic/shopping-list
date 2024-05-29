@@ -1,3 +1,4 @@
+from typing import List
 from api.models.shoppingListItem import ShoppingListItem
 
 
@@ -7,9 +8,10 @@ class ShoppingList:
         "dried goods": [{"product": "macaroni", "amount": "250g"}],
     }
 
-    def add_product_to_list(self, shoppingListItem: ShoppingListItem):
-        if shoppingListItem.category in self.data:
-            self.data[shoppingListItem.category].append(
-                shoppingListItem.item)
-        else:
-            self.data[shoppingListItem.category] = [shoppingListItem.item]
+    def add_products_to_list(self, shoppingListItems: List[ShoppingListItem]):
+        for shoppingListItem in shoppingListItems:
+            if shoppingListItem.category in self.data:
+                self.data[shoppingListItem.category].append(
+                    shoppingListItem.item)
+            else:
+                self.data[shoppingListItem.category] = [shoppingListItem.item]

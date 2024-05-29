@@ -1,3 +1,4 @@
+import AddRecipeToList from "../../AddRecipeToList/AddRecipeToList";
 import ListDisplay from "../../ListDisplay/ListDisplay";
 import IListItem from "../../ListItem/IListItem";
 
@@ -11,7 +12,7 @@ export default function CollapsibleRecipe(props: {
   items: IListItem[];
 }) {
   const [open, setOpen] = useState(false);
-  const contentRef = useRef<HTMLDivElement>();
+  const contentRef = useRef<HTMLDivElement>(null);
   const childHeight = contentRef.current ? contentRef.current.scrollHeight : 0;
 
   return (
@@ -19,9 +20,10 @@ export default function CollapsibleRecipe(props: {
       <button className="collapse-button" onClick={() => setOpen(!open)}>
         {props.recipe}
       </button>
+      <AddRecipeToList recipeName={props.recipe} items={props.items} />
       <div
         className="collapse-parent"
-        ref={contentRef} //TODO: Why is ref underlined? What is ref DOING
+        ref={contentRef}
         style={open ? { height: childHeight + "px" } : { height: "0px" }}
       >
         <h3>number of portions: {props.numberOfPortions}</h3>
