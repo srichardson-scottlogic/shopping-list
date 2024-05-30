@@ -23,7 +23,7 @@ Activate the virtual environment (make sure you are using PowerShell or Command 
 Install Flask within the activated environment (from the same terminal as the command above)
 
 ```
-pip install Flask
+pip install -r requirements.txt
 ```
 
 ## Intial setup for the frontend
