@@ -7,8 +7,8 @@ class Recipes:
             "numberOfPortions": 2,
             "ingredients": [
                 {"product": "cheese", "amount": "30g"},
-                {"product": "macaroni", "amount": "250g"}
-            ]
+                {"product": "macaroni", "amount": "250g"},
+            ],
         }
     }
 
@@ -18,7 +18,7 @@ class Recipes:
         # TODO: Make this more generic
         self.data[recipe.name.lower()] = {
             "numberOfPortions": recipe.numberOfPortions,
-            "ingredients": recipe.ingredients
+            "ingredients": recipe.ingredients,
         }
 
     def get_recipe_data(self, name):
