@@ -1,4 +1,4 @@
-class Categories: #TODO: Are these needed?
+class Categories:  # TODO: Are these needed?
     list = ["dairy", "dried goods"]
 
     def add_category(self, category):

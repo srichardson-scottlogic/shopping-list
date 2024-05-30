@@ -11,7 +11,6 @@ class ShoppingList:
     def add_products_to_list(self, shoppingListItems: List[ShoppingListItem]):
         for shoppingListItem in shoppingListItems:
             if shoppingListItem.category in self.data:
-                self.data[shoppingListItem.category].append(
-                    shoppingListItem.item)
+                self.data[shoppingListItem.category].append(shoppingListItem.item)
             else:
                 self.data[shoppingListItem.category] = [shoppingListItem.item]
