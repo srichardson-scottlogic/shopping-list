@@ -42,8 +42,16 @@ def add_ingredient():
             products.add_product(product)
             return _corsify_and_jsonify_response(product.__dict__), 201
         except TypeError:
-            return _corsify_and_jsonify_response({"error": "Request must be a JSON ingredient"}), 415
-    return _corsify_and_jsonify_response({"error": "Request must be a JSON ingredient"}), 415
+            return (
+                _corsify_and_jsonify_response(
+                    {"error": "Request must be a JSON ingredient"}
+                ),
+                415,
+            )
+    return (
+        _corsify_and_jsonify_response({"error": "Request must be a JSON ingredient"}),
+        415,
+    )
 
 
 @app.get("/recipes")
@@ -67,8 +75,16 @@ def add_recipe():
             recipes.add_recipe(recipe)
             return _corsify_and_jsonify_response(recipes.data), 201
         except TypeError:
-            return _corsify_and_jsonify_response({"error": "Request must be a JSON recipe"}), 415
-    return _corsify_and_jsonify_response({"error": "Request must be a JSON recipe"}), 415
+            return (
+                _corsify_and_jsonify_response(
+                    {"error": "Request must be a JSON recipe"}
+                ),
+                415,
+            )
+    return (
+        _corsify_and_jsonify_response({"error": "Request must be a JSON recipe"}),
+        415,
+    )
 
 
 @app.get("/shoppingList")
@@ -86,15 +102,25 @@ def add_items_to_list():
             shoppingList.add_products_to_list(items)
             return _corsify_and_jsonify_response(shoppingList.data), 201
         except TypeError:
-            return _corsify_and_jsonify_response({"error": "Request must be a JSON shopping list"}), 415
-    return _corsify_and_jsonify_response({"error": "Request must be a JSON shopping list"}), 415
+            return (
+                _corsify_and_jsonify_response(
+                    {"error": "Request must be a JSON shopping list"}
+                ),
+                415,
+            )
+    return (
+        _corsify_and_jsonify_response(
+            {"error": "Request must be a JSON shopping list"}
+        ),
+        415,
+    )
 
 
 def _build_cors_preflight_response():
     response = make_response()
     response.headers.add("Access-Control-Allow-Origin", "*")
-    response.headers.add('Access-Control-Allow-Headers', "*")
-    response.headers.add('Access-Control-Allow-Methods', "*")
+    response.headers.add("Access-Control-Allow-Headers", "*")
+    response.headers.add("Access-Control-Allow-Methods", "*")
     return response
 
 
