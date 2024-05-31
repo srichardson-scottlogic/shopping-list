@@ -40,14 +40,18 @@ export default function ShoppingList() {
         category,
         currentProduct,
         currentAmount
-      ); //TODO: get rid of the product and amount after this
+      );
+      setCurrentProduct("")
+      setCurrentAmount("")
     }
   };
-
+  
   const handleCategorySubmit = async (category: string) => {
     await addCategoryDataForProduct(currentProduct, category);
     setCategoryFound(true);
     await postNewItemAndDisplayNewList(category, currentProduct, currentAmount);
+    setCurrentProduct("")
+    setCurrentAmount("")
   };
 
   const getCategoryDataForProduct = async (product: string) => {
@@ -80,6 +84,7 @@ export default function ShoppingList() {
         <List list={items} />
         {categoryFound && (
           <InputText
+            currentAmount={currentAmount}
             currentProduct={currentProduct}
             setCurrentProduct={setCurrentProduct}
             setCurrentAmount={setCurrentAmount}

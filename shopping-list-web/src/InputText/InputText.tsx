@@ -5,6 +5,7 @@ import { getDataResponseForFilteredProducts } from "../utilities/httpMethods/pro
 
 export default function InputText(props: {
   currentProduct: string;
+  currentAmount: string
   setCurrentProduct: Dispatch<React.SetStateAction<string>>;
   setCurrentAmount: Dispatch<React.SetStateAction<string>>;
   handleSubmit: () => Promise<void> | void;
@@ -50,6 +51,7 @@ export default function InputText(props: {
           type="text"
           aria-label="amountInput"
           placeholder="amount"
+          value={props.currentAmount}
           onChange={(e) => props.setCurrentAmount(e.target.value)}
         />
         {!!Object.keys(items).length &&
