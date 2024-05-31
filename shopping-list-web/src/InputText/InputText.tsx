@@ -1,4 +1,4 @@
-import { Dispatch, useState, ChangeEvent } from "react";
+import { Dispatch, useState, ChangeEvent, useEffect } from "react";
 import IListItem from "../ListItem/IListItem";
 import "./InputText.css"
 import { getDataResponseForFilteredProducts } from "../utilities/httpMethods/productMethods";
@@ -17,12 +17,17 @@ export default function InputText(props: {
   const handleProductInput = (e: ChangeEvent<HTMLInputElement>) => {
     const current_value = e.target.value
     props.setCurrentProduct(current_value)
-    getDataResponseForFilteredProducts(current_value).then((res) => setItems(res))
+    
   }
 
   const handleAutoCompleteClick = (item: string) => {
     props.setCurrentProduct(item)
   }
+
+  useEffect(() => {
+    const timeOutId = setTimeout(() => getDataResponseForFilteredProducts(props.currentProduct).then((res) => setItems(res)), 500);
+    return () => clearTimeout(timeOutId);
+  }, [props.currentProduct]);
 
 
   return (
