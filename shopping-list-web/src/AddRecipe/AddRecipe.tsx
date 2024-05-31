@@ -79,6 +79,7 @@ export default function AddRecipe(props: {
       {inputtingNewRecipe && (
         <>
           <InputText
+            currentProduct={currentProduct}
             setCurrentProduct={setCurrentProduct}
             setCurrentAmount={setCurrentAmount}
             handleSubmit={handleAddIngredients}

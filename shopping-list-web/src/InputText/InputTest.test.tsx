@@ -1,6 +1,7 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import InputText from "./InputText";
 
+const mockCurrentProduct = ""
 const mockSetCurrentProduct = jest.fn().mockResolvedValue(undefined);
 const mockSetCurrentAmount = jest.fn().mockResolvedValue(undefined);
 const mockHandleSubmit = jest.fn().mockResolvedValue(undefined);
@@ -40,6 +41,7 @@ describe("InputText", () => {
   beforeEach(() => {
     render(
       <InputText
+        currentProduct={mockCurrentProduct}
         setCurrentProduct={mockSetCurrentProduct}
         setCurrentAmount={mockSetCurrentAmount}
         handleSubmit={mockHandleSubmit}

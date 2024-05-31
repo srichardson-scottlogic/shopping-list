@@ -80,6 +80,7 @@ export default function ShoppingList() {
         <List list={items} />
         {categoryFound && (
           <InputText
+            currentProduct={currentProduct}
             setCurrentProduct={setCurrentProduct}
             setCurrentAmount={setCurrentAmount}
             handleSubmit={handleItemSubmit}

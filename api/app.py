@@ -41,6 +41,11 @@ def get_product_data(name: str):
     return {"error": "Product not found"}, 404
 
 
+@app.get("/products/filter/")
+@app.get("/products/filter/<query>")
+def get_filtered_product_data(query: str = ""):
+    return products.get_filtered_products(query)
+
 @app.post("/products")  # TODO: Deal with categories and validation on those
 def add_ingredient():
     if request.is_json:
