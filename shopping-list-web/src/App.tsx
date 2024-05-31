@@ -3,7 +3,7 @@ import "./App.css";
 
 import ShoppingList from "./ShoppingList/ShoppingList";
 import Header from "./Header/Header";
-import Recipes from "./recipes/Recipes";
+import Recipes from "./afgsfdgsdf/Recipes";
 
 function App() {
   const [showShoppingList, setShowShoppingList] = useState(true);

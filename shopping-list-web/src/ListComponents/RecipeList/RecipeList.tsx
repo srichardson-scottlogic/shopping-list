@@ -1,5 +1,5 @@
 import CollapsibleRecipe from "../../CollapsibleComponents/CollapsibleRecipe/CollapsibleRecipe";
-import IRecipe from "../../Recipes/IRecipe";
+import IRecipe from "../../afgsfdgsdf/IRecipe";
 
 export default function RecipeList(props: { recipes: Map<string, IRecipe> }) {
   const listRecipes = Array.from(props.recipes.keys()).map(
