@@ -3,7 +3,7 @@ import IListItem from "../ListItem/IListItem";
 import IRecipe from "../Recipes/IRecipe";
 import ListDisplay from "../ListDisplay/ListDisplay";
 import { postRecipeData } from "../utilities/httpMethods/recipeMethods";
-import InputText from "../AddItem/InputText/InputText";
+import AddItem from "../AddItem/AddItem";
 
 export default function AddRecipe(props: {
   setRecipes: Dispatch<React.SetStateAction<Map<string, IRecipe>>>;
@@ -71,12 +71,12 @@ export default function AddRecipe(props: {
       )}
       {inputtingNewRecipe && (
         <>
-          <InputText
+          <AddItem
             currentProduct={currentProduct}
-            currentAmount={currentAmount}
             setCurrentProduct={setCurrentProduct}
+            currentAmount={currentAmount}
             setCurrentAmount={setCurrentAmount}
-            handleSubmit={handleAddIngredients}
+            handleItemSubmit={handleAddIngredients}
           />
           <button type="submit" onClick={handleRecipeSubmit}>
             Add Recipe

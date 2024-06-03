@@ -12,6 +12,8 @@ export default function ShoppingList() {
   const [items, setItems] = useState<Map<string, IListItem[]>>(
     new Map<string, IListItem[]>(),
   );
+  const [currentProduct, setCurrentProduct] = useState("");
+  const [currentAmount, setCurrentAmount] = useState("");
 
   const getAndDisplayListData = async () => {
     const result = await getListData();
@@ -24,16 +26,12 @@ export default function ShoppingList() {
     });
   }, []);
 
-  const postNewItemAndDisplayNewList = async (
-    category: string,
-    product: string,
-    amount: string,
-  ) => {
+  const postNewItemAndDisplayNewList = async (category: string) => {
     const result = await addItemsDataToList([
       {
         category: category,
-        product: product,
-        amount: amount,
+        product: currentProduct,
+        amount: currentAmount,
       },
     ]);
     setItems(result);
@@ -44,7 +42,13 @@ export default function ShoppingList() {
       <h1>Shopping List</h1>
       <div id="list-container">
         <List list={items} />
-        <AddItem postNewItemAndDisplayNewList={postNewItemAndDisplayNewList} />
+        <AddItem
+          currentProduct={currentProduct}
+          setCurrentProduct={setCurrentProduct}
+          currentAmount={currentAmount}
+          setCurrentAmount={setCurrentAmount}
+          handleItemSubmit={postNewItemAndDisplayNewList}
+        />
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, useState } from "react";
 import {
   addCategoryDataForProduct,
   getCategoryDataResponseForProduct,
@@ -7,39 +7,29 @@ import InputText from "./InputText/InputText";
 import InputCategory from "./InputCategory/InputCategory";
 
 export default function AddItem(props: {
-  postNewItemAndDisplayNewList: (
-    category: string,
-    currentProduct: string,
-    currentAmount: string
-  ) => Promise<any>;
+  currentProduct: string;
+  setCurrentProduct: Dispatch<React.SetStateAction<string>>;
+  currentAmount: string;
+  setCurrentAmount: Dispatch<React.SetStateAction<string>>;
+  handleItemSubmit: ((category: string) => Promise<void>) | (() => void);
 }) {
-  const [currentProduct, setCurrentProduct] = useState<string>("");
-  const [currentAmount, setCurrentAmount] = useState<string>("");
   const [categoryFound, setCategoryFound] = useState(true);
 
   const handleItemSubmit = async () => {
-    const category = await getCategoryDataForProduct(currentProduct);
+    const category = await getCategoryDataForProduct(props.currentProduct);
     if (category) {
-      await props.postNewItemAndDisplayNewList(
-        category,
-        currentProduct,
-        currentAmount
-      );
-      setCurrentProduct("");
-      setCurrentAmount("");
+      await props.handleItemSubmit(category);
+      props.setCurrentProduct("");
+      props.setCurrentAmount("");
     }
   };
 
   const handleCategorySubmit = async (category: string) => {
-    await addCategoryDataForProduct(currentProduct, category);
+    await addCategoryDataForProduct(props.currentProduct, category);
     setCategoryFound(true);
-    await props.postNewItemAndDisplayNewList(
-      category,
-      currentProduct,
-      currentAmount
-    );
-    setCurrentProduct("");
-    setCurrentAmount("");
+    await props.handleItemSubmit(category);
+    props.setCurrentProduct("");
+    props.setCurrentAmount("");
   };
 
   const getCategoryDataForProduct = async (product: string) => {
@@ -60,16 +50,16 @@ export default function AddItem(props: {
     <>
       {categoryFound && (
         <InputText
-          currentProduct={currentProduct}
-          currentAmount={currentAmount}
-          setCurrentProduct={setCurrentProduct}
-          setCurrentAmount={setCurrentAmount}
+          currentProduct={props.currentProduct}
+          currentAmount={props.currentAmount}
+          setCurrentProduct={props.setCurrentProduct}
+          setCurrentAmount={props.setCurrentAmount}
           handleSubmit={handleItemSubmit}
         />
       )}
       {!categoryFound && (
         <InputCategory
-          product={currentProduct}
+          product={props.currentProduct}
           handleSubmit={handleCategorySubmit}
         />
       )}
