@@ -1,9 +1,9 @@
 import { Dispatch, useState } from "react";
 import IListItem from "../ListItem/IListItem";
 import IRecipe from "../Recipes/IRecipe";
-import InputText from "../InputText/InputText";
 import ListDisplay from "../ListDisplay/ListDisplay";
 import { postRecipeData } from "../utilities/httpMethods/recipeMethods";
+import InputText from "../AddItem/InputText/InputText";
 
 export default function AddRecipe(props: {
   setRecipes: Dispatch<React.SetStateAction<Map<string, IRecipe>>>;
