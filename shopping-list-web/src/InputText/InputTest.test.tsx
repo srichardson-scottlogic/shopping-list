@@ -21,17 +21,13 @@ describe("InputText", () => {
     fireEvent.change(screen.getByRole("textbox", { name: /productInput/i }), {
       target: { value: "cake" },
     });
-    expect(mockSetCurrentProduct.mock.calls[0][0]).toBe(
-      "cake",
-    );
+    expect(mockSetCurrentProduct.mock.calls[0][0]).toBe("cake");
   });
   it("allows for the input of an amount", async () => {
     fireEvent.change(screen.getByRole("textbox", { name: /amountInput/i }), {
       target: { value: "30g" },
     });
-    expect(mockSetCurrentAmount.mock.calls[0][0]).toBe(
-      "30g",
-    );
+    expect(mockSetCurrentAmount.mock.calls[0][0]).toBe("30g");
   });
 
   it("handles submit", async () => {

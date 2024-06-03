@@ -1,5 +1,8 @@
 import { Dispatch, useState, useEffect } from "react";
-import { IDataItem, getDataResponseForFilteredProducts } from "../utilities/httpMethods/productMethods";
+import {
+  IDataItem,
+  getDataResponseForFilteredProducts,
+} from "../utilities/httpMethods/productMethods";
 import AutocompleteDropdown from "../common/autocompleteDropdown";
 
 export default function InputText(props: {

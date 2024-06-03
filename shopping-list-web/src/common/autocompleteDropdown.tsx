@@ -1,12 +1,12 @@
 import "./autocompleteDropdown.css";
 
-const AutocompleteDropdown = (props: {
+export default function AutocompleteDropdown(props: {
   onChange: (newValue: string) => void;
   value: string;
   items: string[];
   ariaLabel: string;
   placeholder: string;
-}) => {
+}) {
   return (
     <>
       <input
@@ -32,6 +32,4 @@ const AutocompleteDropdown = (props: {
       )}
     </>
   );
-};
-
-export default AutocompleteDropdown;
+}
