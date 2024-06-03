@@ -1,4 +1,5 @@
 from api.models.product import Product
+import re
 
 
 class Products:
@@ -14,3 +15,10 @@ class Products:
     def get_product_information(self, name):
         if name in self.data:
             return self.data[name.lower()]
+
+    def get_filtered_products(self, query: str):
+        def product_filter(query, product_name):
+            regex = "^.*" + ".*".join(query.lower()) + ".*$"
+            return bool(re.search(regex, product_name.lower()))
+
+        return {product_name: self.data[product_name] for product_name in self.data if product_filter(query, product_name)}

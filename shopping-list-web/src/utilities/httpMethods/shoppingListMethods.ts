@@ -17,7 +17,7 @@ export const getListData = async () => {
 export const addItemDataToList = async (
   category: string,
   product: string,
-  amount: string
+  amount: string,
 ) => {
   const data = [
     {

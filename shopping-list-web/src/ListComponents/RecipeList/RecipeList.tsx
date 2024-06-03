@@ -12,7 +12,7 @@ export default function RecipeList(props: { recipes: Map<string, IRecipe> }) {
           items={props.recipes.get(recipe)!.ingredients}
         />
       );
-    }
+    },
   );
   return listRecipes;
 }

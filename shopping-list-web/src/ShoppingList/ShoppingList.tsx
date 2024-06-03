@@ -16,7 +16,7 @@ import {
 
 export default function ShoppingList() {
   const [items, setItems] = useState<Map<string, IListItem[]>>(
-    new Map<string, IListItem[]>()
+    new Map<string, IListItem[]>(),
   );
   const [currentProduct, setCurrentProduct] = useState<string>("");
   const [currentAmount, setCurrentAmount] = useState<string>("");
@@ -39,8 +39,10 @@ export default function ShoppingList() {
       await postNewItemAndDisplayNewList(
         category,
         currentProduct,
-        currentAmount
-      ); //TODO: get rid of the product and amount after this
+        currentAmount,
+      );
+      setCurrentProduct("");
+      setCurrentAmount("");
     }
   };
 
@@ -48,6 +50,8 @@ export default function ShoppingList() {
     await addCategoryDataForProduct(currentProduct, category);
     setCategoryFound(true);
     await postNewItemAndDisplayNewList(category, currentProduct, currentAmount);
+    setCurrentProduct("");
+    setCurrentAmount("");
   };
 
   const getCategoryDataForProduct = async (product: string) => {
@@ -67,7 +71,7 @@ export default function ShoppingList() {
   const postNewItemAndDisplayNewList = async (
     category: string,
     product: string,
-    amount: string
+    amount: string,
   ) => {
     const result = await addItemDataToList(category, product, amount);
     setItems(result);
@@ -80,6 +84,8 @@ export default function ShoppingList() {
         <List list={items} />
         {categoryFound && (
           <InputText
+            currentAmount={currentAmount}
+            currentProduct={currentProduct}
             setCurrentProduct={setCurrentProduct}
             setCurrentAmount={setCurrentAmount}
             handleSubmit={handleItemSubmit}

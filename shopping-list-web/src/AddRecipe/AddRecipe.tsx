@@ -43,6 +43,8 @@ export default function AddRecipe(props: {
       },
     ];
     setIngredients(newIngredientList);
+    setCurrentAmount("");
+    setCurrentProduct("");
   };
 
   const handleRecipeSubmit = async () => {
@@ -79,6 +81,8 @@ export default function AddRecipe(props: {
       {inputtingNewRecipe && (
         <>
           <InputText
+            currentProduct={currentProduct}
+            currentAmount={currentAmount}
             setCurrentProduct={setCurrentProduct}
             setCurrentAmount={setCurrentAmount}
             handleSubmit={handleAddIngredients}

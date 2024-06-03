@@ -19,7 +19,7 @@ describe("CollapsibleCategory", () => {
       <CollapsibleCategory
         category={mockProps.category}
         items={mockProps.items}
-      />
+      />,
     );
   });
 });

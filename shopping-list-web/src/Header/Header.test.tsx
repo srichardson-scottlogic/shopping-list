@@ -12,9 +12,9 @@ describe("Header", () => {
   it("has a Shopping List button which can be clicked", async () => {
     fireEvent.click(screen.getByText("Shopping List"));
     await waitFor(() => {
-        expect(mockShoppingListClick).toHaveBeenCalled();
-        expect(mockRecipeClick).not.toHaveBeenCalled();
-      });
+      expect(mockShoppingListClick).toHaveBeenCalled();
+      expect(mockRecipeClick).not.toHaveBeenCalled();
+    });
   });
   it("has a Recipe button which can be clicked", async () => {
     fireEvent.click(screen.getByText("Recipes"));
@@ -30,7 +30,7 @@ describe("Header", () => {
       <Header
         onShoppingListClick={mockShoppingListClick}
         onRecipesClick={mockRecipeClick}
-      />
+      />,
     );
   });
 });
