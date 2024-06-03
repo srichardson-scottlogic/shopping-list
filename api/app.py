@@ -100,8 +100,8 @@ def add_items_to_list():
             shoppingList.add_products_to_list(items)
             return shoppingList.data, 201
         except TypeError:
-            return {"error": "Request must be a JSON shopping list"}, 415
-    return {"error": "Request must be a JSON shopping list"}, 415
+            return {"error": "Request must be a list of JSON shopping list items"}, 415
+    return {"error": "Request must be a list of JSON shopping list items"}, 415
 
 
 def _build_cors_preflight_response():

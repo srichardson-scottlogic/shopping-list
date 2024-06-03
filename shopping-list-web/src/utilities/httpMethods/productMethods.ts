@@ -1,5 +1,3 @@
-import IListItem from "../../ListItem/IListItem";
-
 export const addCategoryDataForProduct = async (
   product: string,
   category: string,
