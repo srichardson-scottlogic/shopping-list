@@ -7,7 +7,7 @@ import IListItem from "../ListItem/IListItem";
 import InputCategory from "../InputCategory/InputCategory";
 import {
   getListData,
-  addItemDataToList,
+  addItemsDataToList,
 } from "../utilities/httpMethods/shoppingListMethods";
 import {
   addCategoryDataForProduct,
@@ -73,7 +73,13 @@ export default function ShoppingList() {
     product: string,
     amount: string,
   ) => {
-    const result = await addItemDataToList(category, product, amount);
+    const result = await addItemsDataToList([
+      {
+        category: category,
+        product: product,
+        amount: amount,
+      },
+    ]);
     setItems(result);
   };
 

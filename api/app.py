@@ -95,7 +95,7 @@ def add_items_to_list():
             for item in request.get_json():
                 if "category" not in item:
                     item["category"] = products.get_product_information(
-                        item["item"]["product"])["category"]
+                        item["product"])["category"]
                 items.append(ShoppingListItem(**item))
             shoppingList.add_products_to_list(items)
             return shoppingList.data, 201
