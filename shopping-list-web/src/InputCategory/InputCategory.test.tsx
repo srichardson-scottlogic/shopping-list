@@ -7,8 +7,8 @@ describe("InputCategory", () => {
   it("renders question", () => {
     expect(
       screen.getByText(
-        "Please enter where in the supermarket you would find cake"
-      )
+        "Please enter where in the supermarket you would find cake",
+      ),
     ).toBeInTheDocument();
   });
   it("allows for the input of a category", async () => {
@@ -24,7 +24,7 @@ describe("InputCategory", () => {
     });
     fireEvent.click(screen.getByRole("button", { name: /Add category/i }));
     await waitFor(() =>
-      expect(mockHandleSubmit).toHaveBeenCalledWith("bakery")
+      expect(mockHandleSubmit).toHaveBeenCalledWith("bakery"),
     );
   });
 

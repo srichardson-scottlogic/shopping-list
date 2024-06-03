@@ -43,8 +43,8 @@ export default function AddRecipe(props: {
       },
     ];
     setIngredients(newIngredientList);
-    setCurrentAmount("")
-    setCurrentProduct("")
+    setCurrentAmount("");
+    setCurrentProduct("");
   };
 
   const handleRecipeSubmit = async () => {

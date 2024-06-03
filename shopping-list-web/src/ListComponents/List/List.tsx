@@ -11,7 +11,7 @@ export default function List(props: { list: Map<string, IListItem[]> }) {
           items={props.list.get(category)!}
         />
       );
-    }
+    },
   );
   return listCategories;
 }

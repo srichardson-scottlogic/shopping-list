@@ -1,6 +1,6 @@
 export const addCategoryDataForProduct = async (
   product: string,
-  category: string
+  category: string,
 ) => {
   const data = {
     name: product,
@@ -21,8 +21,12 @@ export const getCategoryDataResponseForProduct = async (product: string) => {
   return result;
 };
 
-export const getDataResponseForFilteredProducts = async (query: string): Promise<any> => {
-  const response = await fetch("http://127.0.0.1:5000/products/filter/" + query);
+export const getDataResponseForFilteredProducts = async (
+  query: string,
+): Promise<any> => {
+  const response = await fetch(
+    "http://127.0.0.1:5000/products/filter/" + query,
+  );
 
   const result = await response.json();
   return result;

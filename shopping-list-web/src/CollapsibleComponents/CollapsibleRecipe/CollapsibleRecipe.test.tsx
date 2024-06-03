@@ -24,7 +24,7 @@ describe("CollapsibleRecipe", () => {
         recipe={mockProps.recipe}
         numberOfPortions={mockProps.numberOfPortions}
         items={mockProps.items}
-      />
+      />,
     );
   });
 });
