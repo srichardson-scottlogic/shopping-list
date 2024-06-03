@@ -1,6 +1,5 @@
 import { Dispatch, useState, useEffect } from "react";
-import IListItem from "../ListItem/IListItem";
-import { getDataResponseForFilteredProducts } from "../utilities/httpMethods/productMethods";
+import { IDataItem, getDataResponseForFilteredProducts } from "../utilities/httpMethods/productMethods";
 import AutocompleteDropdown from "../common/autocompleteDropdown";
 
 export default function InputText(props: {
@@ -10,8 +9,8 @@ export default function InputText(props: {
   setCurrentAmount: Dispatch<React.SetStateAction<string>>;
   handleSubmit: () => Promise<void> | void;
 }) {
-  const [items, setItems] = useState<Map<string, IListItem[]>>(
-    new Map<string, IListItem[]>(),
+  const [items, setItems] = useState<Map<string, IDataItem[]>>(
+    new Map<string, IDataItem[]>(),
   );
 
   useEffect(() => {

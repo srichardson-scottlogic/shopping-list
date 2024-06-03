@@ -16,7 +16,7 @@ class Products:
         if name in self.data:
             return self.data[name.lower()]
 
-    def get_filtered_products(self, query):
+    def get_filtered_products(self, query: str):
         def product_filter(query, product_name):
             regex = "^.*" + ".*".join(query.lower()) + ".*$"
             return bool(re.search(regex, product_name.lower()))
