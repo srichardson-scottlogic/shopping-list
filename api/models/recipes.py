@@ -2,15 +2,16 @@ from api.models.recipe import Recipe
 
 
 class Recipes:
-    data = {
-        "macaroni cheese": {
-            "numberOfPortions": 2,
-            "ingredients": [
-                {"product": "cheese", "amount": "30g"},
-                {"product": "macaroni", "amount": "250g"},
-            ],
+    def __init__(self):
+        self.data = {
+            "macaroni cheese": {
+                "numberOfPortions": 2,
+                "ingredients": [
+                    {"product": "cheese", "amount": "30g"},
+                    {"product": "macaroni", "amount": "250g"},
+                ],
+            }
         }
-    }
 
     def add_recipe(self, recipe: Recipe):
         if recipe.name in self.data:
