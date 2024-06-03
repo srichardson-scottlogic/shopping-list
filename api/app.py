@@ -1,5 +1,4 @@
-from typing import List
-from flask import Flask, request, jsonify, make_response
+from flask import Flask, request, make_response
 from api.models.product import Product
 from api.models.products import Products
 from api.models.recipe import Recipe
@@ -67,7 +66,7 @@ def get_all_recipes():
 def get_recipe_data(name: str):
     recipe = recipes.get_recipe_data(name)
     if recipe:
-        return jsonify(recipe)
+        return recipe
     return {"error": "Recipe not found"}, 404
 
 
@@ -94,6 +93,9 @@ def add_items_to_list():
         try:  # TODO: Use marshmellow here
             items = []
             for item in request.get_json():
+                if "category" not in item:
+                    item["category"] = products.get_product_information(
+                        item["item"]["product"])["category"]
                 items.append(ShoppingListItem(**item))
             shoppingList.add_products_to_list(items)
             return shoppingList.data, 201
