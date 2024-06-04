@@ -20,7 +20,7 @@ Activate the virtual environment (make sure you are using PowerShell or Command 
 .venv\Scripts\activate
 ```
 
-Install Flask within the activated environment (from the same terminal as the command above)
+Install dependencies within the activated environment (from the same terminal as the command above)
 
 ```
 pip install -r requirements.txt

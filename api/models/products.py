@@ -3,7 +3,11 @@ import re
 
 
 class Products:
-    data = {"cheese": {"category": "dairy"}, "macaroni": {"category": "dried goods"}}
+    def __init__(self):
+        self.data = {
+            "cheese": {"category": "dairy"},
+            "macaroni": {"category": "dried goods"},
+        }
 
     def add_product(self, product: Product):
         if product.name in self.data:

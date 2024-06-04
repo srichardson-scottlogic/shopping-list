@@ -1,8 +1,9 @@
 import { Dispatch, useState } from "react";
 import IListItem from "../ListItem/IListItem";
 import IRecipe from "../Recipes/IRecipe";
-import InputText from "../InputText/InputText";
 import ListDisplay from "../ListDisplay/ListDisplay";
+import { postRecipeData } from "../utilities/httpMethods/recipeMethods";
+import AddItem from "../AddItem/AddItem";
 
 export default function AddRecipe(props: {
   setRecipes: Dispatch<React.SetStateAction<Map<string, IRecipe>>>;
@@ -15,23 +16,13 @@ export default function AddRecipe(props: {
   const [currentProduct, setCurrentProduct] = useState("");
   const [currentAmount, setCurrentAmount] = useState("");
 
-  const postRecipeData = async () => {
-    const data = {
-      name: recipeName,
-      numberOfPortions: numberOfPortions,
-      ingredients: ingredients,
-    };
-    const response = await fetch("http://127.0.0.1:5000/recipes", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
-    const result = await response.json();
-    const objectToMap = (obj: Map<string, IRecipe>) =>
-      new Map<string, IRecipe>(Object.entries(obj));
-    props.setRecipes(objectToMap(result));
+  const postAndSetRecipeData = async () => {
+    const result = await postRecipeData(
+      recipeName,
+      numberOfPortions,
+      ingredients
+    );
+    props.setRecipes(result);
   };
 
   const handleAddIngredients = () => {
@@ -48,7 +39,7 @@ export default function AddRecipe(props: {
   };
 
   const handleRecipeSubmit = async () => {
-    await postRecipeData();
+    await postAndSetRecipeData();
     setInputtingNewRecipe(false);
     setIngredients([]);
   };
@@ -80,12 +71,12 @@ export default function AddRecipe(props: {
       )}
       {inputtingNewRecipe && (
         <>
-          <InputText
+          <AddItem
             currentProduct={currentProduct}
-            currentAmount={currentAmount}
             setCurrentProduct={setCurrentProduct}
+            currentAmount={currentAmount}
             setCurrentAmount={setCurrentAmount}
-            handleSubmit={handleAddIngredients}
+            handleItemSubmit={handleAddIngredients}
           />
           <button type="submit" onClick={handleRecipeSubmit}>
             Add Recipe

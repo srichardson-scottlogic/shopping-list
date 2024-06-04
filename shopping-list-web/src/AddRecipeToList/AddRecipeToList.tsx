@@ -1,6 +1,7 @@
 import { useState } from "react";
 import IListItem from "../ListItem/IListItem";
 import "./AddRecipeToList.css";
+import { addItemsDataToList } from "../utilities/httpMethods/shoppingListMethods";
 
 export default function AddRecipeToList(props: {
   recipeName: string;
@@ -9,6 +10,7 @@ export default function AddRecipeToList(props: {
   const [buttonDisabled, setButtonDisabled] = useState(false);
   const handleClick = () => {
     setButtonDisabled(!buttonDisabled);
+    addItemsDataToList(props.items);
   };
 
   const buttonText = buttonDisabled
