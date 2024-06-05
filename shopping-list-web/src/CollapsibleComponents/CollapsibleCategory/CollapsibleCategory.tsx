@@ -22,7 +22,7 @@ export default function CollapsibleCategory(props: {
         ref={contentRef}
         style={open ? { height: childHeight + "px" } : { height: "0px" }}
       >
-        <ListDisplay items={props.items} />
+        <ListDisplay items={props.items} onDelete={props.onDelete}/>
         <hr />
       </div>
     </div>

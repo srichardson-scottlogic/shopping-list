@@ -5,6 +5,7 @@ import IListItem from "../ListItem/IListItem";
 import {
   getListData,
   addItemsDataToList,
+  deleteItemFromList,
 } from "../utilities/httpMethods/shoppingListMethods";
 import AddItem from "../AddItem/AddItem";
 
@@ -37,11 +38,16 @@ export default function ShoppingList() {
     setItems(result);
   };
 
+  const deleteitemAndDisplayNewList = async (item: string) => {
+    const result = await deleteItemFromList([item]);
+    setItems(result);
+  };
+
   return (
     <>
       <h1>Shopping List</h1>
       <div id="list-container">
-        <List list={items} />
+        <List list={items} onDelete={(item) => deleteitemAndDisplayNewList(item)}/>
         <AddItem
           currentProduct={currentProduct}
           setCurrentProduct={setCurrentProduct}

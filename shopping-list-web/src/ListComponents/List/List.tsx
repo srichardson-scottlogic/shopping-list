@@ -9,6 +9,7 @@ export default function List(props: { list: Map<string, IListItem[]> }) {
           key={i}
           category={category}
           items={props.list.get(category)!}
+          onDelete={props.onDelete}
         />
       );
     },

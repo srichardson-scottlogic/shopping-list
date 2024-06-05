@@ -104,6 +104,25 @@ def add_items_to_list():
     return {"error": "Request must be a list of JSON shopping list items"}, 415
 
 
+@app.delete("/shoppingList")
+def delete_item_from_list():
+    print("IN HERE")
+    if request.is_json:
+        try:  # TODO: Use marshmellow here
+            items = []
+            for item in request.get_json():
+                if "category" not in item:
+                    item["category"] = products.get_product_information(
+                        item["product"])["category"]
+                items.append(ShoppingListItem(**item))
+            shoppingList.remove_products_from_list(items)
+            return shoppingList.data, 201
+        except TypeError:
+            print(request.get_json())
+            return {"error": "Request must be a list of JSON shopping list items"}, 415
+    return {"error": "Request must be a list of JSON shopping list items"}, 415
+
+
 def _build_cors_preflight_response():
     response = make_response()
     response.headers.add("Access-Control-Allow-Origin", "*")
