@@ -7,3 +7,9 @@ label {
 input {
   margin: 0.4rem;
 }
+
+.list-items {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

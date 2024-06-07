@@ -16,3 +16,8 @@ class ShoppingList:
                     shoppingListItem.item)
             else:
                 self.data[shoppingListItem.category] = [shoppingListItem.item]
+
+
+    def remove_products_from_list(self, shoppingListItems: List[ShoppingListItem]):
+        for shoppingListItem in shoppingListItems:
+            self.data[shoppingListItem.category].remove(shoppingListItem.item)
