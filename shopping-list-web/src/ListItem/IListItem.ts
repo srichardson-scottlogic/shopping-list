@@ -3,4 +3,5 @@ export default interface IListItem {
   amount: string;
   category?: string;
   checked?: boolean;
+  onDelete?: (_) => void;
 }
